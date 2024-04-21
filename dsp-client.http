@@ -1,0 +1,42 @@
+POST http://dsp-server.test/api/auth/register/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name" : "Sherlock Holmes",
+    "email" : "sherlock@bakerstreet.com",
+    "password" : "12345678",
+    "password_confirmation" : "12345678",
+    "device_name" : "Farhan's Samsung Galaxy A72"
+}
+
+###
+
+POST http://dsp-server.test/api/auth/login/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name" : "Sherlock Holmes",
+    "email" : "sherlock@bakerstreet.com",
+    "password" : "12345678",
+    "device_name" : "Farhan's Samsung Galaxy A72"
+}
+
+###
+
+GET http://dsp-server.test/api/auth/authenticated-user-details/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 1|NqCmsuqzcxJK8Jie8SGqaDnmXKBPJN1kgC8IwEdqbbe51074
+
+{}
+
+###
+
+POST http://dsp-server.test/api/auth/logout/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 1|NqCmsuqzcxJK8Jie8SGqaDnmXKBPJN1kgC8IwEdqbbe51074
+
+{}
