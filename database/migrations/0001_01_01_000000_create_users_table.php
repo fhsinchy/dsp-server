@@ -19,6 +19,18 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('intro_complete')->default(false);
             $table->enum('user_type', ['user', 'admin'])->default('user');
+            $table->date('dob')->nullable();
+            $table->enum('gender', ['Male', 'Female'])->nullable();
+            $table->enum('difficulty_managing_household_income', [
+                'Very easy',
+                'Fairly easy',
+                'Neither easy nor difficult',
+                'Fairlt difficult',
+                'Very difficult',
+                'Prefer not to say',
+            ]);
+            $table->string('self_described_gender')->nullable();
+            $table->string('self_specified_ethnic_group')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

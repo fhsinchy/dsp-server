@@ -21,8 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'intro_complete',
-        'user_type',
     ];
 
     /**
@@ -33,6 +31,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'user_type',
+        'intro_complete',
     ];
 
     /**
@@ -46,5 +46,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function familyMembers() {
+        return $this->hasMany(FamilyMember::class);
+    }
+
+    public function ethnicGroups() {
+        return $this->belongsToMany(EthnicGroup::class);
     }
 }
