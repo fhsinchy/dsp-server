@@ -3,17 +3,18 @@
 namespace Database\Seeders;
 
 use App\Models\EthnicGroup;
+use App\Models\Question;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class EthnicGroupSeeder extends Seeder
+class EthnicGroupQuestionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $groups = [
+        $options = [
             'White British',
             'White Other',
             'Black or Black British',
@@ -23,9 +24,13 @@ class EthnicGroupSeeder extends Seeder
             'Prefer Not To Say',
         ];
 
-        foreach ($groups as $group) {
-            EthnicGroup::create([
-                'name'  => $group,
+        $question = Question::create([
+            'body' => 'To which of the groups listed below do you consider you belong?',
+        ]);
+
+        foreach ($options as $option) {
+            $question->options()->create([
+                'body' => $option,
             ]);
         }
     }

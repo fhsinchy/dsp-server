@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\LevelOfEducation;
+use App\Models\Question;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LevelOfEducationSeeder extends Seeder
+class EducationLevelQuestionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $levels = [
+        $options = [
             'Primary',
             'Secondary (GCSE or equivalent)',
             'Further (\'A\' Level or equivalent)',
@@ -21,9 +21,13 @@ class LevelOfEducationSeeder extends Seeder
             'Prefer not to say',
         ];
 
-        foreach ($levels as $level) {
-            LevelOfEducation::create([
-                'title' => $level,
+        $question = Question::create([
+            'body' => 'What is the highest level of education completed?',
+        ]);
+
+        foreach ($options as $option) {
+            $question->options()->create([
+                'body' => $option,
             ]);
         }
     }
