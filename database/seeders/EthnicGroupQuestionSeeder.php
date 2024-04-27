@@ -15,22 +15,24 @@ class EthnicGroupQuestionSeeder extends Seeder
     public function run(): void
     {
         $options = [
-            'White British',
-            'White Other',
-            'Black or Black British',
-            'Asian or Asian British',
-            'Chinese',
-            'Mixed',
-            'Prefer Not To Say',
+            "White British",
+            "White Other",
+            "Black or Black British",
+            "Asian or Asian British",
+            "Chinese",
+            "Mixed",
+            "Prefer Not To Say",
         ];
 
         $question = Question::create([
-            'body' => 'To which of the groups listed below do you consider you belong?',
+            "body" =>
+                "To which of the groups listed below do you consider you belong?",
+            "questionnaire_id" => 0,
         ]);
 
         foreach ($options as $option) {
             $question->options()->create([
-                'body' => $option,
+                "body" => $option,
             ]);
         }
     }

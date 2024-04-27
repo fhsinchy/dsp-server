@@ -14,20 +14,21 @@ class EducationLevelQuestionSeeder extends Seeder
     public function run(): void
     {
         $options = [
-            'Primary',
-            'Secondary (GCSE or equivalent)',
+            "Primary",
+            "Secondary (GCSE or equivalent)",
             'Further (\'A\' Level or equivalent)',
-            'Higher (university degree)',
-            'Prefer not to say',
+            "Higher (university degree)",
+            "Prefer not to say",
         ];
 
         $question = Question::create([
-            'body' => 'What is the highest level of education completed?',
+            "body" => "What is the highest level of education completed?",
+            "questionnaire_id" => 0,
         ]);
 
         foreach ($options as $option) {
             $question->options()->create([
-                'body' => $option,
+                "body" => $option,
             ]);
         }
     }

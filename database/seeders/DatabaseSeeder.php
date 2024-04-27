@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
+            QuestionnaireSeeder::class,
             EthnicGroupQuestionSeeder::class,
             EducationLevelQuestionSeeder::class,
             EmploymentStatusQuestionSeeder::class,

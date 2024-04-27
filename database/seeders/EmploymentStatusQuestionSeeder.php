@@ -31,6 +31,7 @@ class EmploymentStatusQuestionSeeder extends Seeder
         $question = Question::create([
             "body" =>
                 "How would you best describe your current employment status?",
+            "questionnaire_id" => 0,
         ]);
 
         foreach ($options as $option) {

@@ -25,6 +25,7 @@ class DifficultyManagingHouseholdQuestionSeeder extends Seeder
         $question = Question::create([
             "body" =>
                 "How easy or difficult do you find it to manage on your household’s income?",
+            "questionnaire_id" => 0,
         ]);
 
         foreach ($options as $option) {

@@ -9,11 +9,15 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'body',
-    ];
+    protected $fillable = ["body"];
 
-    public function options() {
+    public function options()
+    {
         return $this->hasMany(Option::class);
+    }
+
+    public function questionnaire()
+    {
+        return $this->belongsTo(Questionnaire::class);
     }
 }
