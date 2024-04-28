@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\OneTimeQuestionnaireController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +15,8 @@ Route::prefix('auth')->group(function() {
 
         Route::get('authenticated-user-details', [ApiAuthController::class, 'authenticatedUserDetails']);
     });
+});
+
+Route::prefix('survey')->middleware('auth:sanctum')->group(function() {
+    Route::post('one-time-questionnaire', OneTimeQuestionnaireController::class);
 });
