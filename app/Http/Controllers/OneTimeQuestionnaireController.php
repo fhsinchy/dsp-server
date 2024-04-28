@@ -21,32 +21,39 @@ class OneTimeQuestionnaireController extends Controller
 
         DB::beginTransaction();
         try {
+            $user->healthProfile()->create([
+                'optimism_about_the_future' => $request->optimism_about_the_future,
+                'feeling_useful' => $request->feeling_useful,
+                'feeling_relaxed' => $request->feeling_relaxed,
+                'dealing_with_problems' => $request->dealing_with_problems,
+                'thinking_clearly' => $request->thinking_clearly,
+                'feeling_close_to_people' => $request->feeling_close_to_people,
+                'being_able_to_make_up_my_mind' => $request->being_able_to_make_up_my_mind,
+                'concern_1' => $request->concern_1,
+                'concern_2' => $request->concern_2,
+                'concern_1_level' => $request->concern_1_level,
+                'concern_2_level' => $request->concern_2_level,             
+            ]);
+
+            $user->socioDemographicProfile()->create([
+                'dob' => $request->dob,
+                'self_described_gender' => $request->self_described_gender,
+                'gender' => $request->gender,
+                'difficulty_managing_household_income' => $request->difficulty_managing_household_income,
+                'highest_level_of_education' => $request->highest_level_of_education,
+                'employment_status' => $request->employment_status,
+                'self_specified_ethnic_group' => $request->self_specified_ethnic_group,
+                'ethnic_group' => $request->ethnic_group,
+            ]);
+
             foreach ($request->family_members as $familyMember) {
-                $user->familyMembers()->create([
+                $user->socioDemographicProfile->familyMembers()->create([
                     'gender' => $familyMember['gender'],
                     'age' => $familyMember['age'],
                     'relationship' => $familyMember['relationship'],
                 ]);
             }
 
-            $user->dob = $request->dob;
-            if ($request->has('self_described_gender')) {
-                $user->self_described_gender = $request->self_described_gender;
-            } else {
-                $user->gender = $request->gender;
-            }
-            $user->difficulty_managing_household_income = $request->difficulty_managing_household_income;
-            $user->concern_1 = $request->concern_1;
-            $user->concern_2 = $request->concern_2;
-            $user->concern_1_level = $request->concern_1_level;
-            $user->concern_2_level = $request->concern_2_level;
-            $user->highest_level_of_education = $request->highest_level_of_education;
-            $user->employment_status = $request->employment_status;
-            if ($request->has('self_specified_ethnic_group')) {
-                $user->self_specified_ethnic_group = $request->self_specified_ethnic_group;
-            } else {
-                $user->ethnic_group = $request->ethnic_group;
-            }
             $user->intro_complete = true;
             $user->save();
 

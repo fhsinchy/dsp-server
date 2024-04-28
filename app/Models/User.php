@@ -45,8 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function healthProfile() {
+        return $this->hasOne(UserHealthProfile::class);
+    }
 
-    public function familyMembers() {
-        return $this->hasMany(FamilyMember::class);
+    public function socioDemographicProfile() {
+        return $this->hasOne(UserSocioDemographicProfile::class);
     }
 }

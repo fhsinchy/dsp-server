@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('gender');
             $table->integer('age');
             $table->string('relationship');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_socio_demographic_profile_id');
             $table->timestamps();
         });
     }
