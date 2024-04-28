@@ -17,7 +17,7 @@ class DifficultyManagingHouseholdQuestionSeeder extends Seeder
             "Very easy",
             "Fairly easy",
             "Neither easy nor difficult",
-            "Fairlt difficult",
+            "Fairly difficult",
             "Very difficult",
             "Prefer not to say",
         ];
