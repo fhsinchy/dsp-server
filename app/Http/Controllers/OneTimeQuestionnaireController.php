@@ -21,7 +21,7 @@ class OneTimeQuestionnaireController extends Controller
 
         DB::beginTransaction();
         try {
-            $user->healthProfile()->create([
+            $userHealthProfile = $user->healthProfile()->create([
                 'optimism_about_the_future' => $request->optimism_about_the_future,
                 'feeling_useful' => $request->feeling_useful,
                 'feeling_relaxed' => $request->feeling_relaxed,
@@ -34,6 +34,16 @@ class OneTimeQuestionnaireController extends Controller
                 'concern_1_level' => $request->concern_1_level,
                 'concern_2_level' => $request->concern_2_level,             
             ]);
+
+            foreach($request->mental_health_conditions as $mentalHealthConditionKey => $mentalHealthConditionValue) {
+                $userHealthProfile->$mentalHealthConditionKey = $mentalHealthConditionValue;
+            }
+
+            foreach($request->health_problems_or_disabilities as $healthPromlemOrDisabilityKey => $healthPromlemOrDisabilityValue) {
+                $userHealthProfile->$healthPromlemOrDisabilityKey = $healthPromlemOrDisabilityValue;
+            }
+
+            $userHealthProfile->save();
 
             $user->socioDemographicProfile()->create([
                 'dob' => $request->dob,
