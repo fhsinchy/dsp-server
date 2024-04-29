@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function socioDemographicProfile() {
         return $this->hasOne(UserSocioDemographicProfile::class);
     }
+
+    public function metaProfile() {
+        return $this->hasOne(UserMetaProfile::class);
+    }
 }
